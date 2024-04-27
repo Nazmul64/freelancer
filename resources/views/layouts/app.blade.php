@@ -156,7 +156,7 @@
                         <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                             <img src="assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
                             <span class="pro-user-name ml-1">
-                                Maxine K  <i class="mdi mdi-chevron-down"></i>
+                                {{ Auth::user()->name }}  <i class="mdi mdi-chevron-down"></i>
                             </span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
@@ -197,7 +197,7 @@
                 <div class="logo-box">
                     <a href="index.html" class="logo text-center">
                         <span class="logo-lg">
-                            <img src="assets/images/logo-light.png" alt="" height="25">
+                            <img src="{{ asset('uploads/dashboard/assets/images/logo-light.png') }}" alt="" height="25">
                             <!-- <span class="logo-lg-text-light">UBold</span> -->
                         </span>
                         <span class="logo-sm">
@@ -244,8 +244,7 @@
 
                         <ul class="metismenu" id="side-menu">
 
-                            <li class="menu-title">Navigation</li>
-
+                            <li class="menu-title">{{(Auth::user()->role==1)?'customer':'admin' }}</li>
                             <li>
                                 <a href="{{ route('home') }}">
                                     <i class="fe-airplay"></i>
@@ -254,21 +253,21 @@
 
                             </li>
 
+
+                            @if (auth::user()->role==2)
                             <li>
                                 <a href="javascript: void(0);">
                                     <i class="fe-sidebar"></i>
-                                    <span>  Layouts </span>
+                                    <span>Header</span>
                                     <span class="menu-arrow"></span>
                                 </a>
                                 <ul class="nav-second-level" aria-expanded="false">
-                                    <li><a href="layouts-horizontal.html">Horizontal</a></li>
-                                    <li><a href="layouts-menucollapsed.html">Menu Collapsed</a></li>
-                                    <li><a href="layouts-light-sidebar.html">Light Sidebar</a></li>
-                                    <li><a href="layouts-small-sidebar.html">Small Sidebar</a></li>
-                                    <li><a href="layouts-boxed.html">Boxed</a></li>
+                                    <li><a href="{{ route('header.create') }}">Add Header</a></li>
+                                    {{-- <li><a href="{{ route('header.index') }}">List Haader</a></li> --}}
+
                                 </ul>
                             </li>
-
+                            @endif
 
                         </ul>
 
@@ -401,7 +400,13 @@
 
         <!-- Vendor js -->
         <script src="{{ asset('uploads/dashboard/assets/js/vendor.min.js') }}"></script>
+ <!--C3 Chart-->
+        <script src="{{ asset('uploads/dashboard/assets/libs/d3/d3.min.js') }}"></script>
+        <script src="{{ asset('uploads/dashboard/assets/libs/c3/c3.min.js') }}"></script>
 
+        <script src="{{ asset('uploads/dashboard/assets/libs/echarts/echarts.min.js') }}"></script>
+
+        <script src="{{ asset('uploads/dashboard/assets/js/pages/dashboard.init.js') }}"></script>
         <!-- App js -->
         <script src="{{ asset('uploads/dashboard/assets/js/app.min.js') }}"></script>
 

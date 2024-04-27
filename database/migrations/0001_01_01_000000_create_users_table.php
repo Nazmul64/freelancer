@@ -18,6 +18,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('profile_photo')->default('avator.jpeg');
+            $table->string('phone_number')->nullable();
+            $table->integer('role')->default(1)->comment('1=Customer,2=Admin');
             $table->rememberToken();
             $table->timestamps();
         });
